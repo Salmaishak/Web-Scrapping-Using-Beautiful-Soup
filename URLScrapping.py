@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import csv
 
-# Extract the HTML and create a BeautifulSoup object.
+# Extract the HTML and create a BeautifulSoup object
 url = ('https://www.tripadvisor.in/Hotels-g294201-Cairo_Cairo_Governorate-Hotels.html')
 
 user_agent = ({'User-Agent':
