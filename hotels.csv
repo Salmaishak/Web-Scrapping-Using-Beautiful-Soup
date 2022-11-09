@@ -1,37 +1,38 @@
-Hotel Names,Ratings,Number of Reviews,Prices
-Sponsored      Fairmont Nile City,4.5 of 5 bubbles,"5,355 reviews","EGP 6,203"
-1. Steigenberger Hotel El Tahrir,4.5 of 5 bubbles,"1,562 reviews","EGP 8,201"
-2. Kempinski Nile Hotel Garden City Cairo,4.5 of 5 bubbles,"4,154 reviews","EGP 13,694"
-3. Fairmont Nile City,4.5 of 5 bubbles,"5,355 reviews","EGP 6,203"
-"4. Al Masa Hotel, Nasr City",5 of 5 bubbles,897 reviews,"EGP 1,819"
-5. Cairo Marriott Hotel & Omar Khayyam Casino,4.5 of 5 bubbles,"3,775 reviews","EGP 5,708EGP 5,567"
-"Sponsored      Staybridge Suites Cairo - Citystars, an IHG Hotel",4.5 of 5 bubbles,231 reviews,"EGP 4,781"
-6. Le Passage Cairo Hotel & Casino,4.5 of 5 bubbles,"3,187 reviews","EGP 4,751EGP 4,004"
-"7. Sonesta Hotel, Tower & Casino Cairo",4.5 of 5 bubbles,"1,601 reviews","EGP 2,906"
-"8. Radisson Blu Hotel, Cairo Heliopolis",4 of 5 bubbles,"2,071 reviews","EGP 3,665"
-9. Sofitel Cairo Nile El Gezirah,4.5 of 5 bubbles,"3,900 reviews","EGP 12,721EGP 12,433"
-10. Dusit Thani LakeView Cairo,4.5 of 5 bubbles,"3,491 reviews","EGP 7,205"
-"Sponsored      Holiday Inn Cairo - Citystars, an IHG Hotel",4.5 of 5 bubbles,"1,058 reviews","EGP 3,835"
-11. Le Meridien Cairo Airport,4.5 of 5 bubbles,"1,572 reviews","EGP 4,554EGP 4,447"
-12. Royal Maxim Palace Kempinski Cairo,4.5 of 5 bubbles,"2,029 reviews","EGP 8,180"
-13. Dahab Hostel,4.5 of 5 bubbles,572 reviews,EGP 503EGP 322
-14. Novotel Cairo Airport,4 of 5 bubbles,"2,210 reviews","EGP 3,249"
-15. Hilton Cairo Heliopolis,4 of 5 bubbles,"1,716 reviews","EGP 4,725"
-"Sponsored      InterContinental Cairo Semiramis, an IHG Hotel",4.5 of 5 bubbles,"2,834 reviews","EGP 8,399"
-16. Grand Nile Tower,3.5 of 5 bubbles,928 reviews,"EGP 4,705"
-17. Ramses Hilton,4 of 5 bubbles,"4,160 reviews","EGP 8,424"
-18. Hilton Cairo Zamalek Residences,4 of 5 bubbles,949 reviews,"EGP 5,999"
-"19. The St. Regis Almasa Hotel, Cairo",4.5 of 5 bubbles,110 reviews,"EGP 4,968"
-20. Concorde El Salam Hotel Cairo by Royal Tulip,4 of 5 bubbles,727 reviews,"EGP 3,398"
-Sponsored      Sofitel Cairo Nile El Gezirah,4.5 of 5 bubbles,"3,900 reviews","EGP 11,279"
-21. Novotel Cairo El Borg,4 of 5 bubbles,"1,431 reviews","EGP 5,580"
-22. Baron Hotel Cairo,4 of 5 bubbles,830 reviews,"EGP 2,395"
-23. Osiris Hotel,4.5 of 5 bubbles,502 reviews,EGP 951
-24. Paradise Boutique Hotel,4 of 5 bubbles,78 reviews,EGP 804
-25. Cairo Paradise Hotel,4.5 of 5 bubbles,171 reviews,EGP 839
-26. Golden Tulip Flamenco Hotel Flamenco Cairo,3.5 of 5 bubbles,455 reviews,"EGP 4,072"
-27. New Grand Royal Hotel Cairo,4 of 5 bubbles,369 reviews,EGP 838
-28. Tolip Golden Plaza Hotel,3.5 of 5 bubbles,95 reviews,"EGP 3,390"
-29. City View Hotel,4 of 5 bubbles,407 reviews,"EGP 1,441EGP 1,119"
-30. Oasis Hotel,4 of 5 bubbles,4 reviews,EGP 341
-Sponsored      Hilton Cairo Zamalek Residences,4 of 5 bubbles,949 reviews,"EGP 6,017"
+Hotel Names,Ratings,Number of Reviews,Prices,links
+Sponsored      Fairmont Nile City,4.5 of 5 bubbles,"5,355 reviews","EGP 6,203",https://www.tripadvisor.in/Hotel_Review-g294201-d580690-Reviews-Fairmont_Nile_City-Cairo_Cairo_Governorate.html
+1. Steigenberger Hotel El Tahrir,4.5 of 5 bubbles,"1,563 reviews","EGP 9,762EGP 8,201",https://www.tripadvisor.in/Hotel_Review-g294201-d10356829-Reviews-Steigenberger_Hotel_El_Tahrir-Cairo_Cairo_Governorate.html
+2. Kempinski Nile Hotel Garden City Cairo,4.5 of 5 bubbles,"4,154 reviews","EGP 13,694",https://www.tripadvisor.in/Hotel_Review-g294201-d1597516-Reviews-Kempinski_Nile_Hotel_Garden_City_Cairo-Cairo_Cairo_Governorate.html
+3. Fairmont Nile City,4.5 of 5 bubbles,"5,355 reviews","EGP 6,203",https://www.tripadvisor.in/Hotel_Review-g294201-d580690-Reviews-Fairmont_Nile_City-Cairo_Cairo_Governorate.html
+"4. Al Masa Hotel, Nasr City",5 of 5 bubbles,900 reviews,"EGP 1,819",https://www.tripadvisor.in/Hotel_Review-g294201-d2389917-Reviews-Al_Masa_Hotel_Nasr_City-Cairo_Cairo_Governorate.html
+5. Le Passage Cairo Hotel & Casino,4.5 of 5 bubbles,"3,188 reviews","EGP 4,751EGP 4,004",https://www.tripadvisor.in/Hotel_Review-g294201-d301746-Reviews-Le_Passage_Cairo_Hotel_Casino-Cairo_Cairo_Governorate.html
+"Sponsored      Staybridge Suites Cairo - Citystars, an IHG Hotel",4.5 of 5 bubbles,233 reviews,"EGP 4,781",https://www.tripadvisor.in/Hotel_Review-g294201-d1150283-Reviews-Staybridge_Suites_Cairo_Citystars_an_IHG_Hotel-Cairo_Cairo_Governorate.html
+6. Cairo Marriott Hotel & Omar Khayyam Casino,4.5 of 5 bubbles,"3,766 reviews","EGP 5,708EGP 5,567",https://www.tripadvisor.in/Hotel_Review-g294201-d299719-Reviews-Cairo_Marriott_Hotel_Omar_Khayyam_Casino-Cairo_Cairo_Governorate.html
+"7. Sonesta Hotel, Tower & Casino Cairo",4.5 of 5 bubbles,"1,602 reviews","EGP 2,906",https://www.tripadvisor.in/Hotel_Review-g294201-d302323-Reviews-Sonesta_Hotel_Tower_Casino_Cairo-Cairo_Cairo_Governorate.html
+"8. Radisson Blu Hotel, Cairo Heliopolis",4 of 5 bubbles,"2,071 reviews","EGP 3,665",https://www.tripadvisor.in/Hotel_Review-g294201-d1229187-Reviews-Radisson_Blu_Hotel_Cairo_Heliopolis-Cairo_Cairo_Governorate.html
+9. Sofitel Cairo Nile El Gezirah,4.5 of 5 bubbles,"3,895 reviews","EGP 12,589",https://www.tripadvisor.in/Hotel_Review-g294201-d304481-Reviews-Sofitel_Cairo_Nile_El_Gezirah-Cairo_Cairo_Governorate.html
+10. Dusit Thani LakeView Cairo,4.5 of 5 bubbles,"3,490 reviews","EGP 7,205",https://www.tripadvisor.in/Hotel_Review-g294201-d1146358-Reviews-Dusit_Thani_LakeView_Cairo-Cairo_Cairo_Governorate.html
+"Sponsored      InterContinental Cairo Semiramis, an IHG Hotel",4.5 of 5 bubbles,"2,834 reviews","EGP 8,399",https://www.tripadvisor.in/Hotel_Review-g294201-d299113-Reviews-InterContinental_Cairo_Semiramis_an_IHG_Hotel-Cairo_Cairo_Governorate.html
+11. Le Meridien Cairo Airport,4.5 of 5 bubbles,"1,572 reviews","EGP 4,554EGP 4,447",https://www.tripadvisor.in/Hotel_Review-g294201-d5040629-Reviews-Le_Meridien_Cairo_Airport-Cairo_Cairo_Governorate.html
+12. Royal Maxim Palace Kempinski Cairo,4.5 of 5 bubbles,"2,029 reviews","EGP 8,180",https://www.tripadvisor.in/Hotel_Review-g294201-d8489537-Reviews-Royal_Maxim_Palace_Kempinski_Cairo-Cairo_Cairo_Governorate.html
+13. Dahab Hostel,4.5 of 5 bubbles,571 reviews,EGP 503EGP 322,https://www.tripadvisor.in/Hotel_Review-g294201-d629999-Reviews-Dahab_Hostel-Cairo_Cairo_Governorate.html
+14. Novotel Cairo Airport,4 of 5 bubbles,"2,209 reviews","EGP 3,249",https://www.tripadvisor.in/Hotel_Review-g294201-d299611-Reviews-Novotel_Cairo_Airport-Cairo_Cairo_Governorate.html
+15. Hilton Cairo Heliopolis,4 of 5 bubbles,"1,718 reviews","EGP 4,725",https://www.tripadvisor.in/Hotel_Review-g294201-d1157029-Reviews-Hilton_Cairo_Heliopolis-Cairo_Cairo_Governorate.html
+"Sponsored      InterContinental Citystars Cairo, an IHG Hotel",4.5 of 5 bubbles,"2,541 reviews","EGP 5,815",https://www.tripadvisor.in/Hotel_Review-g294201-d536381-Reviews-InterContinental_Citystars_Cairo_an_IHG_Hotel-Cairo_Cairo_Governorate.html
+16. Grand Nile Tower,3.5 of 5 bubbles,928 reviews,"EGP 4,705",https://www.tripadvisor.in/Hotel_Review-g294201-d308091-Reviews-Grand_Nile_Tower-Cairo_Cairo_Governorate.html
+17. Ramses Hilton,4 of 5 bubbles,"4,160 reviews","EGP 8,424",https://www.tripadvisor.in/Hotel_Review-g294201-d300669-Reviews-Ramses_Hilton-Cairo_Cairo_Governorate.html
+18. Hilton Cairo Zamalek Residences,4 of 5 bubbles,949 reviews,"EGP 5,999",https://www.tripadvisor.in/Hotel_Review-g294201-d301697-Reviews-Hilton_Cairo_Zamalek_Residences-Cairo_Cairo_Governorate.html
+"19. The St. Regis Almasa Hotel, Cairo",4.5 of 5 bubbles,110 reviews,"EGP 4,294",https://www.tripadvisor.in/Hotel_Review-g294201-d13540550-Reviews-The_St_Regis_Almasa_Hotel_Cairo-Cairo_Cairo_Governorate.html
+20. Concorde El Salam Hotel Cairo by Royal Tulip,4 of 5 bubbles,723 reviews,"EGP 3,398",https://www.tripadvisor.in/Hotel_Review-g294201-d301243-Reviews-Concorde_El_Salam_Hotel_Cairo_by_Royal_Tulip-Cairo_Cairo_Governorate.html
+"Sponsored      Holiday Inn Cairo - Citystars, an IHG Hotel",4.5 of 5 bubbles,"1,060 reviews","EGP 3,835",https://www.tripadvisor.in/Hotel_Review-g294201-d817571-Reviews-Holiday_Inn_Cairo_Citystars_an_IHG_Hotel-Cairo_Cairo_Governorate.html
+21. Novotel Cairo El Borg,4 of 5 bubbles,"1,431 reviews","EGP 5,580",https://www.tripadvisor.in/Hotel_Review-g294201-d1200790-Reviews-Novotel_Cairo_El_Borg-Cairo_Cairo_Governorate.html
+22. Baron Hotel Cairo,4 of 5 bubbles,830 reviews,"EGP 2,395",https://www.tripadvisor.in/Hotel_Review-g294201-d481920-Reviews-Baron_Hotel_Cairo-Cairo_Cairo_Governorate.html
+23. Osiris Hotel,4.5 of 5 bubbles,502 reviews,EGP 951,https://www.tripadvisor.in/Hotel_Review-g294201-d614748-Reviews-Osiris_Hotel-Cairo_Cairo_Governorate.html
+24. Paradise Boutique Hotel,4 of 5 bubbles,78 reviews,EGP 804,https://www.tripadvisor.in/Hotel_Review-g294201-d12062145-Reviews-Paradise_Boutique_Hotel-Cairo_Cairo_Governorate.html
+25. Cairo Paradise Hotel,4.5 of 5 bubbles,171 reviews,EGP 839,https://www.tripadvisor.in/Hotel_Review-g294201-d2413606-Reviews-Cairo_Paradise_Hotel-Cairo_Cairo_Governorate.html
+Sponsored      Sofitel Cairo Nile El Gezirah,4.5 of 5 bubbles,"3,895 reviews","EGP 11,420",https://www.tripadvisor.in/Hotel_Review-g294201-d304481-Reviews-Sofitel_Cairo_Nile_El_Gezirah-Cairo_Cairo_Governorate.html
+26. Golden Tulip Flamenco Hotel Flamenco Cairo,3.5 of 5 bubbles,455 reviews,"EGP 4,072",https://www.tripadvisor.in/Hotel_Review-g294201-d301551-Reviews-Golden_Tulip_Flamenco_Hotel_Flamenco_Cairo-Cairo_Cairo_Governorate.html
+27. New Grand Royal Hotel Cairo,4 of 5 bubbles,369 reviews,EGP 838,https://www.tripadvisor.in/Hotel_Review-g294201-d2708329-Reviews-New_Grand_Royal_Hotel_Cairo-Cairo_Cairo_Governorate.html
+28. Tolip Golden Plaza Hotel,3.5 of 5 bubbles,95 reviews,"EGP 3,390",https://www.tripadvisor.in/Hotel_Review-g294201-d12901747-Reviews-Tolip_Golden_Plaza_Hotel-Cairo_Cairo_Governorate.html
+29. City View Hotel,4 of 5 bubbles,407 reviews,"EGP 1,446EGP 1,119",https://www.tripadvisor.in/Hotel_Review-g294201-d1194224-Reviews-City_View_Hotel-Cairo_Cairo_Governorate.html
+30. Oasis Hotel,4 of 5 bubbles,4 reviews,EGP 341,https://www.tripadvisor.in/Hotel_Review-g294201-d15518244-Reviews-Oasis_Hotel-Cairo_Cairo_Governorate.html
+Sponsored      Hilton Cairo Zamalek Residences,4 of 5 bubbles,949 reviews,"EGP 6,017",https://www.tripadvisor.in/Hotel_Review-g294201-d301697-Reviews-Hilton_Cairo_Zamalek_Residences-Cairo_Cairo_Governorate.html
