@@ -19,7 +19,16 @@ soup = BeautifulSoup(html_doc, 'html.parser')
 #view the type of soup object
 print (type(soup))
 #view the soup object
-
+print (soup)
 #create a tag object
+tag = soup.p #we specified we want paragraph
+#print the tag
+print( tag)
+# <p class="text" title="about me"> my first paragraph</p>
 
-#view the tag object type
+comment = soup.b.string
+print(type(comment))
+print(tag.attrs)
+print (tag.string) #el gwa el paragraph
+
+print(type(tag.string))
