@@ -12,21 +12,30 @@ def getHTMLdocument(url):
     return response.text
 
 
-URL = "https://www.tripadvisor.com/Restaurants-g294201-zfp19-Cairo_Cairo_Governorate.html"
+def getNextReviewsLink():
+    next = ""
+    for i in restaurant_soup.findAll("a", {"class": "nav next ui_button primary"}):
+        next = i.get("href")
+        break
+    return next
 
-home_html_document = getHTMLdocument(URL)
+
+tripadvisor_restaurants_url = "https://www.tripadvisor.com/Restaurants-g294201-zfp19-Cairo_Cairo_Governorate.html"
+
+home_html_document = getHTMLdocument(tripadvisor_restaurants_url)
 soup = BeautifulSoup(home_html_document, 'lxml')
 
 Restaurants = soup.findAll("a", {"class": "Lwqic Cj b"})
-print(len(Restaurants))
+# print(len(Restaurants))
 first_part_of_uri_restaurant = "https://www.tripadvisor.com/"
+
+# next = soup.find("a", {"class": "nav next rndBtn ui_button primary taLnk"})
+# print(next.get("href"))
 
 for restaurant in Restaurants:
     rest = Restaurant()
     restaurant_url = first_part_of_uri_restaurant + restaurant.get("href")
-    # print(restaurant_url)
     restaurant_html_page = getHTMLdocument(restaurant_url)
-    # print(restaurant_html_page)
     restaurant_soup = BeautifulSoup(restaurant_html_page, 'lxml')
     # print(restaurant_soup)
 
@@ -50,31 +59,48 @@ for restaurant in Restaurants:
     # print("Phone no" + rest.phone_no)
 
     # get name
-    for i in restaurant_soup.findAll("div",{"class":"acKDw w O"}):
-        h1=i.find("h1")
-        print(h1.get_text())
-        rest.name=h1.get_text()
+    for i in restaurant_soup.findAll("div", {"class": "acKDw w O"}):
+        h1 = i.find("h1")
+        # print(h1.get_text())
+        rest.name = h1.get_text()
         break
 
     # get reviews
-    for i in restaurant_soup.findAll("p",{"class":"partial_entry"}):
+    ctr = 0
+    reviews_list = restaurant_soup.findAll("p", {"class": "partial_entry"})
+    while len(reviews_list) != 0 and ctr <= 100:
+        print(ctr)
+        ctr = ctr + 1
+        for review in reviews_list:
+            rest.reviews.append(review.get_text())
+
+        next_url_for_reviews = first_part_of_uri_restaurant + getNextReviewsLink()
+
+        reviews_content = getHTMLdocument(next_url_for_reviews)
+        reviews_soup = BeautifulSoup(reviews_content, 'lxml')
+        reviews_list = reviews_soup.findAll("p", {"class": "partial_entry"})
+
+    # print( len(rest.reviews))
+    # print("Reviews: ")
+    # print(rest.reviews)
+
+    for i in restaurant_soup.findAll("p", {"class": "partial_entry"}):
         rest.reviews.append(i.get_text())
         # print(i.get_text())
     # print(len(rest.reviews))
 
-
     # get price range
-    for i in restaurant_soup.findAll("div",{"class":"SrqKb"}):
-        rest.price_range=i.get_text()
+    for i in restaurant_soup.findAll("div", {"class": "SrqKb"}):
+        rest.price_range = i.get_text()
         break
 
     # get cuisines
-    ctr=0
-    for i in restaurant_soup.findAll("div",{"class":"SrqKb"}):
-        if ctr ==0:
-            ctr=ctr+1
+    ctr = 0
+    for i in restaurant_soup.findAll("div", {"class": "SrqKb"}):
+        if ctr == 0:
+            ctr = ctr + 1
             continue
-        rest.cuisines=i.get_text()
+        rest.cuisines = i.get_text()
         break
 
     # get special diets
@@ -83,6 +109,8 @@ for restaurant in Restaurants:
         if ctr == 2:
             rest.special_diets = i.get_text()
             break
-        ctr=ctr+1
-    print(rest.special_diets)
+        ctr = ctr + 1
+
+    # get link of second page of reviews
+
     break
