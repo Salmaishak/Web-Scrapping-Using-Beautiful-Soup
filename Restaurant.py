@@ -1,4 +1,6 @@
 class Restaurant:
+    id=0
+    city=""
     name=""
     location=""
     phone_no=""
