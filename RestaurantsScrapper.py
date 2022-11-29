@@ -18,7 +18,7 @@ home_html_document = getHTMLdocument(URL)
 soup = BeautifulSoup(home_html_document, 'lxml')
 
 Restaurants = soup.findAll("a", {"class": "Lwqic Cj b"})
-
+print(len(Restaurants))
 first_part_of_uri_restaurant = "https://www.tripadvisor.com/"
 
 for restaurant in Restaurants:
@@ -59,8 +59,30 @@ for restaurant in Restaurants:
     # get reviews
     for i in restaurant_soup.findAll("p",{"class":"partial_entry"}):
         rest.reviews.append(i.get_text())
-        print(i.get_text())
-    print(len(rest.reviews))
-    break
+        # print(i.get_text())
+    # print(len(rest.reviews))
 
-# number_of_reviews:  a, BMQDV _F G- wSSLS SwZTJ
+
+    # get price range
+    for i in restaurant_soup.findAll("div",{"class":"SrqKb"}):
+        rest.price_range=i.get_text()
+        break
+
+    # get cuisines
+    ctr=0
+    for i in restaurant_soup.findAll("div",{"class":"SrqKb"}):
+        if ctr ==0:
+            ctr=ctr+1
+            continue
+        rest.cuisines=i.get_text()
+        break
+
+    # get special diets
+    ctr = 0
+    for i in restaurant_soup.findAll("div", {"class": "SrqKb"}):
+        if ctr == 2:
+            rest.special_diets = i.get_text()
+            break
+        ctr=ctr+1
+    print(rest.special_diets)
+    break
