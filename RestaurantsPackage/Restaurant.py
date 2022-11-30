@@ -12,3 +12,17 @@ class Restaurant:
     cuisines=""
     special_diets=""
 
+    def displayData(self):
+        print("Id: "+self.id)
+        print("Name: "+ self.name)
+        print("City: "+self.city)
+        print("location: "+self.location)
+        print("phone_no: "+self.phone_no)
+        print("website link: "+self.website_link)
+        print("rate: "+self.rate)
+        print("price range: "+self.price_range)
+        print("cuisines: "+self.cuisines)
+        print("special diets: "+self.special_diets)
+        print("Reviews: ")
+        for review in self.reviews:
+            print(review)
