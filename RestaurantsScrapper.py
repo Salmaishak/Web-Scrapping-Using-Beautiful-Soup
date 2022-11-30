@@ -18,10 +18,6 @@ while home_html_document is not False:
 
     Restaurants = soup.findAll("a", {"class": "Lwqic Cj b"})
 
-    # next = soup.find("a", {"class": "nav next rndBtn ui_button primary taLnk"})
-    # print(next.get("href"))
-    # print(HelperFunctions.getURLForSecondPage(soup))
-
     for restaurant_full_html in Restaurants:
         # break
         tmp_restaurant =Restaurant.Restaurant()
@@ -37,9 +33,12 @@ while home_html_document is not False:
         restaurant_soup = BeautifulSoup(restaurant_html_page, 'lxml')
         # print(restaurant_soup)
 
+        # get website link
         # for i in restaurant_soup.findAll("a",{"class":"YnKZo Ci Wc _S C AYHFM"}):
+        #     # HelperFunctions.getHREF(restaurant_url)
         #     print(i)
-        #     # rest.website_link = i.get('href')
+        #     # tmp_restaurant.website_link = i.get('href')
+        #     # print(tmp_restaurant.website_link)
         #     break
 
         # get number of reviews
@@ -78,25 +77,14 @@ while home_html_document is not False:
             reviews_soup = BeautifulSoup(reviews_content, 'lxml')
             reviews_list = reviews_soup.findAll("p", {"class": "partial_entry"})
 
-        # print( len(rest.reviews))
-        # print("Reviews: ")
-        # print(rest.reviews)
 
-        for i in restaurant_soup.findAll("p", {"class": "partial_entry"}):
-            tmp_restaurant.reviews.append(i.get_text())
-            # print(i.get_text())
-        # print(len(rest.reviews))
-
-        # get price range
-        for i in restaurant_soup.findAll("div", {"class": "SrqKb"}):
-            tmp_restaurant.price_range = i.get_text()
-            break
-
-        # get cuisines
+        # ctr 0 for price range
+        # ctr 1 for cuisines
         ctr = 0
         for i in restaurant_soup.findAll("div", {"class": "SrqKb"}):
             if ctr == 0:
                 ctr = ctr + 1
+                tmp_restaurant.price_range = i.get_text()
                 continue
             tmp_restaurant.cuisines = i.get_text()
             break
@@ -110,8 +98,8 @@ while home_html_document is not False:
             ctr = ctr + 1
 
         restaurant_list.append(tmp_restaurant)
-
-    #ya rab yekhlas run baaa
+        break
+    # ya rab yekhlas run baaa
 
     url_next_page=HelperFunctions.getURLForSecondPage(soup)
     if url_next_page is False:
@@ -120,6 +108,6 @@ while home_html_document is not False:
     print(len(restaurant_list))
     home_html_document=HelperFunctions.getHTMLdocument(url_next_page)
     # testttt
-    print(restaurant_list[0])
+    print(restaurant_list[0].displayData())
     # for rest in restaurant_list:
     #     print(rest.displayData())
