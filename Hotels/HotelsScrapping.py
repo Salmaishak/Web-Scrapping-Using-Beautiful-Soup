@@ -52,19 +52,21 @@ for w in soup.findAll('div', {'class': 'listing_title'}):
     #crawlReviews(linksForReviews) #reviews being crawled per link
 
 location=[]
-def crawlLocation(urls):
+Descriptions=[]
+def crawlLocationandDescr(urls):
     for url in urls:
         tempSoup = SoupCreation.createSoup(url)
         for loc in tempSoup.find('span', {'class': 'fHvkI PTrfg'}):
             location.append(loc.text)
-           # print(loc.text)
+        for descr in tempSoup.find('div',{'class':'fIrGe _T'}):
+           Descriptions.append(descr.text)
 
 
 #crawling for reviews and locations are seperated in a temp Soup because they go in each link
 crawlReviews(websites)
-crawlLocation(websites)
+crawlLocationandDescr(websites)
 
-dict = {'Hotel Names': hotels, 'Ratings': ratings, 'Number of Reviews': Numberreviews, 'Prices': prices, 'links': websites,'location':location}
+dict = {'Hotel Names': hotels, 'Ratings': ratings, 'Number of Reviews': Numberreviews, 'Prices': prices, 'links': websites,'location':location,'Description':Descriptions}
 dict2= {'hotel Names':links, 'Review': reviews}
 
 # Create the dataframe.
