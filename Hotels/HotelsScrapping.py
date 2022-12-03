@@ -35,6 +35,7 @@ for p in soup.findAll('div', {'class': 'price-wrap'}):
     prices.append(p.text.replace('Â', '').strip())
 
 
+
 #links
 reviews=[]
 links=[]
@@ -44,10 +45,19 @@ def crawlReviews(urls):
         for review in tempSoup.findAll('q', {'class': 'QewHA H4 _a'}):
             reviews.append(review.text)
             links.append(url) #using link as a reference key for hotels
-#websites
+#websites and amenities
 websites=[]
+amenitiesList = []
 for w in soup.findAll('div', {'class': 'listing_title'}):
     linksForReviews="https://www.tripadvisor.in"+ w.a.get("href")
+    print(linksForReviews)
+    soup1 = SoupCreation.createSoup(linksForReviews)
+    amenities = ""
+    for am in soup1.findAll('div', {'class': 'yplav f ME H3 _c'}):
+        amenities = am.text + ',' + amenities
+
+    print(amenities)
+    amenitiesList.append(amenities)
     websites.append(linksForReviews)
     #crawlReviews(linksForReviews) #reviews being crawled per link
 
@@ -66,7 +76,7 @@ def crawlLocationandDescr(urls):
 crawlReviews(websites)
 crawlLocationandDescr(websites)
 
-dict = {'Hotel Names': hotels, 'Ratings': ratings, 'Number of Reviews': Numberreviews, 'Prices': prices, 'links': websites,'location':location,'Description':Descriptions}
+dict = {'Hotel Names': hotels, 'Ratings': ratings, 'Number of Reviews': Numberreviews, 'Prices': prices,'amenities':amenitiesList, 'links': websites,'location':location,'Description':Descriptions}
 dict2= {'hotel Names':links, 'Review': reviews}
 
 # Create the dataframe.
