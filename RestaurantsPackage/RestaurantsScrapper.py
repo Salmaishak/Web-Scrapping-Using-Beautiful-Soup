@@ -70,18 +70,23 @@ while home_html_document is not False:
         # ctr 2 for special_diets
 
         # get price range
-        tmp_restaurant.price_range=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div","SrqKb",0,False)
-        tmp_restaurant.price_range=tmp_restaurant.price_range.replace('Â', '').strip()
+        try:
+            tmp_restaurant.price_range=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div","AGRBq",0,False)
+            tmp_restaurant.price_range=tmp_restaurant.price_range.replace('Â', '').strip()
+        except:
+            tmp_restaurant.price_range=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div","AGRBq",0,False)
+            
         # get cuisines
-        tmp_restaurant.cuisines=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div","SrqKb",1,False)
+        tmp_restaurant.cuisines=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div","AGRBq",1,False)
         # get special diets
-        tmp_restaurant.special_diets=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div","SrqKb",2,False)
+        tmp_restaurant.special_diets=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div","AGRBq",2,False)
 
         # get rate
         tmp_restaurant.rate = HelperFunctions.get_text_of_html_tag(restaurant_soup, "span", "ZDEqb", 0, False)
         try:
             tmp_restaurant.rate = tmp_restaurant.rate.rstrip(tmp_restaurant.rate[-1])  # remove last index which is A
         except:
+            tmp_restaurant.rate = HelperFunctions.get_text_of_html_tag(restaurant_soup, "span", "ZDEqb", 0, False)
             print("Error in getting rate")
 
         # # get open times
@@ -95,33 +100,27 @@ while home_html_document is not False:
                 tmp_restaurant.close_time += spans[9].get_text()
             except:
                 print("Error in get open times the restaurant is closed or doesn't set the times ")
+                tmp_restaurant.open_time="None"
+                tmp_restaurant.close_time="None"
             break
 
         # get location
         tmp_restaurant.location = HelperFunctions.get_text_of_html_tag(restaurant_soup, "a", "YnKZo Ci Wc _S C FPPgD", 0, "span")
         restaurant_list.append(tmp_restaurant)
+        # tmp_restaurant.displayData()
+        # CSV_Writer.add_restaurant(restaurant_list)
+        # break
         print("len: "+str(len(restaurant_list)))
 
-    # break
-    # Create dataframe
-    # df=pd.DataFrame(r.name.__dict__ for r in restaurant_list)
-    # dict={'Hotel-names': restaurant_list.name}
-    # reviews_dataFrame=pd.DataFrame()
-    # print(df.head(10))
-    # df.to_csv('restaurants.csv')
-    CSV_Writer.add_restaurant(restaurant_list)
+    # CSV_Writer.add_restaurant(restaurant_list)
     url_next_page = HelperFunctions.getURLForSecondPage(soup)
     # break
     if url_next_page is False:
         break
-    # print(url_next_page)
-    # print(len(restaurant_list))
     home_html_document = HelperFunctions.getHTMLdocument(url_next_page)
     # testttt
     # print(restaurant_list[0].displayData())
-    # break
-    # for rest in restaurant_list:
-    #     print(rest.displayData())
 
-print("Writing no")
+print("Finally, Writing now")
 CSV_Writer.add_restaurant(restaurant_list)
+print("Done ")
