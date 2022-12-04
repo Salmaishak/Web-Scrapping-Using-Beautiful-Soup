@@ -1,32 +1,30 @@
+import pandas as pd
 from bs4 import BeautifulSoup
 from RestaurantsPackage import HelperFunctions
 from RestaurantsPackage import RestaurantClass
+import CSV_Writer
 
-hotel_id = 1
 # constant variables
 first_part_of_uri_restaurant = "https://www.tripadvisor.com/"
-MAX_REVIEWS_PAGE = 1
+MAX_REVIEWS_PAGE = 75
 
-tripadvisor_restaurants_url = "https://www.tripadvisor.com/Restaurants-g294201-zfp19-Cairo_Cairo_Governorate.html"
+tripadvisor_restaurants_url = "https://www.tripadvisor.com/Restaurants-g297555-Sharm_El_Sheikh_South_Sinai_Red_Sea_and_Sinai.html"
 home_html_document = HelperFunctions.getHTMLdocument(tripadvisor_restaurants_url)
 
 # make a list carry restaurant objects
 restaurant_list = []
 
 while home_html_document is not False:
+
     soup = BeautifulSoup(home_html_document, 'lxml')
 
     Restaurants = soup.findAll("a", {"class": "Lwqic Cj b"})
 
     for restaurant_full_html in Restaurants:
+
         tmp_restaurant = RestaurantClass.Restaurant()
         # assign city
         tmp_restaurant.city = "Cairo"
-
-        # assign hotel id
-        tmp_restaurant.id = hotel_id
-        # increment hotel id by 1
-        hotel_id = hotel_id + 1
 
         restaurant_url = first_part_of_uri_restaurant + restaurant_full_html.get("href")
         restaurant_html_page = HelperFunctions.getHTMLdocument(restaurant_url)
@@ -42,18 +40,18 @@ while home_html_document is not False:
         # break
 
         # get number of reviews
-        # for i in restaurant_soup.findAll("a", {"class": "BMQDV _F G- wSSLS SwZTJ"}):
-        #     tmp_restaurant.number_of_reviews = i.get_text()
-        #     break
+        for i in restaurant_soup.findAll("a", {"class": "BMQDV _F G- wSSLS SwZTJ"}):
+            tmp_restaurant.number_of_reviews = i.get_text()
+            break
         tmp_restaurant.number_of_reviews=HelperFunctions.get_text_of_html_tag(restaurant_soup,"a","BMQDV _F G- wSSLS SwZTJ",0,False)
 
         # get phone number
         tmp_restaurant.phone_no=HelperFunctions.get_text_of_html_tag(restaurant_soup,"span", "AYHFM",0,"a")
 
         # get name
-        tmp_restaurant.name=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div", "acKDw w O",0,"h1")
+        tmp_restaurant.name = HelperFunctions.get_text_of_html_tag(restaurant_soup, "div", "acKDw w O", 0, "h1")
 
-        # get reviews
+        # # get reviews
         ctr = 0
         reviews_list = restaurant_soup.findAll("p", {"class": "partial_entry"})
         while len(reviews_list) != 0 and ctr <= MAX_REVIEWS_PAGE:
@@ -73,6 +71,7 @@ while home_html_document is not False:
 
         # get price range
         tmp_restaurant.price_range=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div","SrqKb",0,False)
+        tmp_restaurant.price_range=tmp_restaurant.price_range.replace('Â', '').strip()
         # get cuisines
         tmp_restaurant.cuisines=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div","SrqKb",1,False)
         # get special diets
@@ -80,23 +79,39 @@ while home_html_document is not False:
 
         # get rate
         tmp_restaurant.rate = HelperFunctions.get_text_of_html_tag(restaurant_soup, "span", "ZDEqb", 0, False)
+        try:
+            tmp_restaurant.rate = tmp_restaurant.rate.rstrip(tmp_restaurant.rate[-1])  # remove last index which is A
+        except:
+            print("Error in getting rate")
 
-        # get open times
+        # # get open times
         for i in restaurant_soup.findAll("span", {"class": "mMkhr"}):
-            spans=i.findAll("span")
-            tmp_restaurant.open_time = spans[4].get_text()
-            tmp_restaurant.open_time += spans[5].get_text()
-            tmp_restaurant.close_time = spans[8].get_text()
-            tmp_restaurant.close_time += spans[9].get_text()
+            try:
+                spans = i.findAll("span")
+                # print(spans)
+                tmp_restaurant.open_time = spans[4].get_text()
+                tmp_restaurant.open_time += spans[5].get_text()
+                tmp_restaurant.close_time = spans[8].get_text()
+                tmp_restaurant.close_time += spans[9].get_text()
+            except:
+                print("Error in get open times the restaurant is closed or doesn't set the times ")
             break
 
         # get location
         tmp_restaurant.location = HelperFunctions.get_text_of_html_tag(restaurant_soup, "a", "YnKZo Ci Wc _S C FPPgD", 0, "span")
-
         restaurant_list.append(tmp_restaurant)
-        # break
+        print("len: "+str(len(restaurant_list)))
 
+    # break
+    # Create dataframe
+    # df=pd.DataFrame(r.name.__dict__ for r in restaurant_list)
+    # dict={'Hotel-names': restaurant_list.name}
+    # reviews_dataFrame=pd.DataFrame()
+    # print(df.head(10))
+    # df.to_csv('restaurants.csv')
+    CSV_Writer.add_restaurant(restaurant_list)
     url_next_page = HelperFunctions.getURLForSecondPage(soup)
+    # break
     if url_next_page is False:
         break
     # print(url_next_page)
@@ -105,5 +120,8 @@ while home_html_document is not False:
     # testttt
     # print(restaurant_list[0].displayData())
     # break
-    for rest in restaurant_list:
-        print(rest.displayData())
+    # for rest in restaurant_list:
+    #     print(rest.displayData())
+
+print("Writing no")
+CSV_Writer.add_restaurant(restaurant_list)
