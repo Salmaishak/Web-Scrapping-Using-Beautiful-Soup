@@ -11,9 +11,9 @@ first_part_of_uri_restaurant = "https://www.tripadvisor.com/"
 MAX_REVIEWS_PAGE = 5
 # inspect any of those price range, cuisines, special diets and get its class name
 master_class_name ="SrqKb"
-# write the city you which scrape
+# write the city you which to scrape
 city="Alexandria"
-# put here is the url
+# put here the url
 tripadvisor_restaurants_url = "https://www.tripadvisor.com/Restaurants-g295398-Alexandria_Alexandria_Governorate.html"
 ########################################################################################################################
 
