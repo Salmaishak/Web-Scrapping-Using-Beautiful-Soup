@@ -13,6 +13,7 @@ class Restaurant:
     price_range = ""
     cuisines = ""
     special_diets = ""
+    meal=""
 
     def displayData(self):
         print("Id: " + str(self.id))
