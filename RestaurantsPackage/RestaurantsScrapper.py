@@ -4,15 +4,32 @@ from RestaurantsPackage import HelperFunctions
 from RestaurantsPackage import RestaurantClass
 import CSV_Writer
 
-# constant variables
 first_part_of_uri_restaurant = "https://www.tripadvisor.com/"
-MAX_REVIEWS_PAGE = 75
 
-tripadvisor_restaurants_url = "https://www.tripadvisor.com/Restaurants-g297555-Sharm_El_Sheikh_South_Sinai_Red_Sea_and_Sinai.html"
+#### NOTE HERE ##################################################
+# enter how many pages for reviews you want to collect
+MAX_REVIEWS_PAGE = 5
+# inspect any of those price range, cuisines, special diets and get its class name
+master_class_name ="SrqKb"
+# write the city you which scrape
+city="Alexandria"
+# put here is the url
+tripadvisor_restaurants_url = "https://www.tripadvisor.com/Restaurants-g295398-Alexandria_Alexandria_Governorate.html"
+########################################################################################################################
+
 home_html_document = HelperFunctions.getHTMLdocument(tripadvisor_restaurants_url)
 
 # make a list carry restaurant objects
 restaurant_list = []
+# def get_time(soup):
+#     print("hello")
+#     for i in soup.findAll("div",{"class":"RiEuX f"}):
+#         print(i)
+#         d=i.find("div")
+#         print(d)
+#         s=d.find("span")
+#         print(s)
+CSV_Writer.add_restaurant(None,True)
 
 while home_html_document is not False:
 
@@ -24,7 +41,7 @@ while home_html_document is not False:
 
         tmp_restaurant = RestaurantClass.Restaurant()
         # assign city
-        tmp_restaurant.city = "Cairo"
+        tmp_restaurant.city = city
 
         restaurant_url = first_part_of_uri_restaurant + restaurant_full_html.get("href")
         restaurant_html_page = HelperFunctions.getHTMLdocument(restaurant_url)
@@ -71,15 +88,15 @@ while home_html_document is not False:
 
         # get price range
         try:
-            tmp_restaurant.price_range=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div","AGRBq",0,False)
+            tmp_restaurant.price_range=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div",master_class_name,0,False)
             tmp_restaurant.price_range=tmp_restaurant.price_range.replace('Â', '').strip()
         except:
-            tmp_restaurant.price_range=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div","AGRBq",0,False)
+            tmp_restaurant.price_range=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div",master_class_name,0,False)
             
         # get cuisines
-        tmp_restaurant.cuisines=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div","AGRBq",1,False)
+        tmp_restaurant.cuisines=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div",master_class_name,1,False)
         # get special diets
-        tmp_restaurant.special_diets=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div","AGRBq",2,False)
+        tmp_restaurant.special_diets=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div",master_class_name,2,False)
 
         # get rate
         tmp_restaurant.rate = HelperFunctions.get_text_of_html_tag(restaurant_soup, "span", "ZDEqb", 0, False)
@@ -100,15 +117,18 @@ while home_html_document is not False:
                 tmp_restaurant.close_time += spans[9].get_text()
             except:
                 print("Error in get open times the restaurant is closed or doesn't set the times ")
+                # get_time(restaurant_soup)
                 tmp_restaurant.open_time="None"
                 tmp_restaurant.close_time="None"
             break
 
         # get location
         tmp_restaurant.location = HelperFunctions.get_text_of_html_tag(restaurant_soup, "a", "YnKZo Ci Wc _S C FPPgD", 0, "span")
+
         restaurant_list.append(tmp_restaurant)
         # tmp_restaurant.displayData()
-        # CSV_Writer.add_restaurant(restaurant_list)
+        print("Add a restaurant")
+        CSV_Writer.add_restaurant(tmp_restaurant,False)
         # break
         print("len: "+str(len(restaurant_list)))
 
@@ -121,6 +141,6 @@ while home_html_document is not False:
     # testttt
     # print(restaurant_list[0].displayData())
 
-print("Finally, Writing now")
-CSV_Writer.add_restaurant(restaurant_list)
-print("Done ")
+# print("Finally, Writing now")
+# CSV_Writer.add_restaurant(restaurant_list)
+# print("Done ")
