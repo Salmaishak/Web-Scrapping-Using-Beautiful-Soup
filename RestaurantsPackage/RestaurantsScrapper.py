@@ -10,9 +10,9 @@ first_part_of_uri_restaurant = "https://www.tripadvisor.com/"
 # enter how many pages for reviews you want to collect
 MAX_REVIEWS_PAGE = 5
 # inspect any of those price range, cuisines, special diets and get its class name
-master_class_name ="SrqKb"
+master_class_name = "SrqKb"
 # write the city you which to scrape
-city="Alexandria"
+city = "Alexandria"
 # put here the url
 tripadvisor_restaurants_url = "https://www.tripadvisor.com/Restaurants-g295398-Alexandria_Alexandria_Governorate.html"
 ########################################################################################################################
@@ -29,7 +29,7 @@ restaurant_list = []
 #         print(d)
 #         s=d.find("span")
 #         print(s)
-CSV_Writer.add_restaurant(None,True)
+CSV_Writer.add_restaurant(None, True)
 
 while home_html_document is not False:
 
@@ -60,10 +60,11 @@ while home_html_document is not False:
         for i in restaurant_soup.findAll("a", {"class": "BMQDV _F G- wSSLS SwZTJ"}):
             tmp_restaurant.number_of_reviews = i.get_text()
             break
-        tmp_restaurant.number_of_reviews=HelperFunctions.get_text_of_html_tag(restaurant_soup,"a","BMQDV _F G- wSSLS SwZTJ",0,False)
+        tmp_restaurant.number_of_reviews = HelperFunctions.get_text_of_html_tag(restaurant_soup, "a",
+                                                                                "BMQDV _F G- wSSLS SwZTJ", 0, False)
 
         # get phone number
-        tmp_restaurant.phone_no=HelperFunctions.get_text_of_html_tag(restaurant_soup,"span", "AYHFM",0,"a")
+        tmp_restaurant.phone_no = HelperFunctions.get_text_of_html_tag(restaurant_soup, "span", "AYHFM", 0, "a")
 
         # get name
         tmp_restaurant.name = HelperFunctions.get_text_of_html_tag(restaurant_soup, "div", "acKDw w O", 0, "h1")
@@ -87,16 +88,18 @@ while home_html_document is not False:
         # ctr 2 for special_diets
 
         # get price range
-        try:
-            tmp_restaurant.price_range=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div",master_class_name,0,False)
-            tmp_restaurant.price_range=tmp_restaurant.price_range.replace('Â', '').strip()
-        except:
-            tmp_restaurant.price_range=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div",master_class_name,0,False)
-            
+        # try:
+        #     tmp_restaurant.price_range = HelperFunctions.get_text_of_html_tag(restaurant_soup, "div", master_class_name,
+        #                                                                       0, False)
+        #     tmp_restaurant.price_range = tmp_restaurant.price_range.replace('Â', '').strip()
+        # except:
+        #     tmp_restaurant.price_range = HelperFunctions.get_text_of_html_tag(restaurant_soup, "div", master_class_name,
+        #                                                                       0, False)
+
         # get cuisines
-        tmp_restaurant.cuisines=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div",master_class_name,1,False)
+        # tmp_restaurant.cuisines = HelperFunctions.get_text_of_html_tag(restaurant_soup, "div", master_class_name, 1,   False)
         # get special diets
-        tmp_restaurant.special_diets=HelperFunctions.get_text_of_html_tag(restaurant_soup,"div",master_class_name,2,False)
+        # tmp_restaurant.special_diets = HelperFunctions.get_text_of_html_tag(restaurant_soup, "div", master_class_name, 2, False)
 
         # get rate
         tmp_restaurant.rate = HelperFunctions.get_text_of_html_tag(restaurant_soup, "span", "ZDEqb", 0, False)
@@ -106,6 +109,27 @@ while home_html_document is not False:
             tmp_restaurant.rate = HelperFunctions.get_text_of_html_tag(restaurant_soup, "span", "ZDEqb", 0, False)
             print("Error in getting rate")
 
+        # get meals
+        try:
+            all_divs = restaurant_soup.findAll("div", {"class": "tbUiL b"})
+            tmp_restaurant.price_range = "None"
+            tmp_restaurant.meal = "None"
+            tmp_restaurant.cuisines = "None"
+            tmp_restaurant.special_diets = "None"
+            ctr = 0
+            for d in all_divs:
+                # print(d.get_text())
+                if d.get_text() == "PRICE RANGE":
+                    tmp_restaurant.price_range = HelperFunctions.get_text_of_html_tag(restaurant_soup, "div",master_class_name, ctr, False)
+                elif d.get_text() == "CUISINES":
+                    tmp_restaurant.cuisines = HelperFunctions.get_text_of_html_tag(restaurant_soup, "div", master_class_name, ctr, False)
+                elif d.get_text() == "Meals":
+                    tmp_restaurant.meal = HelperFunctions.get_text_of_html_tag(restaurant_soup, "div", master_class_name, ctr, False)
+                elif d.get_text() == "SPECIAL DIETS":
+                    tmp_restaurant.special_diets = HelperFunctions.get_text_of_html_tag(restaurant_soup, "div",master_class_name, ctr, False)
+                ctr=ctr+1
+        except:
+             print("Error ")
         # # get open times
         for i in restaurant_soup.findAll("span", {"class": "mMkhr"}):
             try:
@@ -118,19 +142,20 @@ while home_html_document is not False:
             except:
                 print("Error in get open times the restaurant is closed or doesn't set the times ")
                 # get_time(restaurant_soup)
-                tmp_restaurant.open_time="None"
-                tmp_restaurant.close_time="None"
+                tmp_restaurant.open_time = "None"
+                tmp_restaurant.close_time = "None"
             break
 
         # get location
-        tmp_restaurant.location = HelperFunctions.get_text_of_html_tag(restaurant_soup, "a", "YnKZo Ci Wc _S C FPPgD", 0, "span")
+        tmp_restaurant.location = HelperFunctions.get_text_of_html_tag(restaurant_soup, "a", "YnKZo Ci Wc _S C FPPgD",
+                                                                       0, "span")
 
         restaurant_list.append(tmp_restaurant)
         # tmp_restaurant.displayData()
-        print("Add a restaurant")
-        CSV_Writer.add_restaurant(tmp_restaurant,False)
+        print("Add a restaurant is Done")
+        CSV_Writer.add_restaurant(tmp_restaurant, False)
         # break
-        print("len: "+str(len(restaurant_list)))
+        print("len: " + str(len(restaurant_list)))
 
     # CSV_Writer.add_restaurant(restaurant_list)
     url_next_page = HelperFunctions.getURLForSecondPage(soup)
