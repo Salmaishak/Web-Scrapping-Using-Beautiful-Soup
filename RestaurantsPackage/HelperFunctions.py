@@ -56,15 +56,18 @@ def getHREF(url):
 
 
 def get_text_of_html_tag(soup, html_tag, class_name, no_of_find,inside_html_tag):
-    ctr = 0
-    for i in soup.findAll(html_tag, {"class": class_name}):
-        if ctr == no_of_find:
-            if inside_html_tag is not False:
-                x = i.find(inside_html_tag)
-                # print("x : "+str(x))
-                # if inside_html_tag =="a":
-                #     return x.get
-                return x.get_text()
-            return i.get_text()
-        ctr = ctr + 1
-    return
+    try:
+        ctr = 0
+        for i in soup.findAll(html_tag, {"class": class_name}):
+            if ctr == no_of_find:
+                if inside_html_tag is not False:
+                    x = i.find(inside_html_tag)
+                    # print("x : "+str(x))
+                    # if inside_html_tag =="a":
+                    #     return x.get
+                    return x.get_text()
+                return i.get_text()
+            ctr = ctr + 1
+        return "None"
+    except:
+        return "None"
