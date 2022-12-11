@@ -9,7 +9,10 @@ import SoupCreation
 urls=['https://www.tripadvisor.in/Hotels-g294201-Cairo_Cairo_Governorate-Hotels.html',
       'https://www.tripadvisor.in/Hotels-g297555-Sharm_El_Sheikh_South_Sinai_Red_Sea_and_Sinai-Hotels.html',
       'https://www.tripadvisor.in/Hotels-g294205-Luxor_Nile_River_Valley-Hotels.html',
-      'https://www.tripadvisor.in/Hotels-g297549-Hurghada_Red_Sea_and_Sinai-Hotels.html']
+      'https://www.tripadvisor.in/Hotels-g297549-Hurghada_Red_Sea_and_Sinai-Hotels.html',
+       'https://www.tripadvisor.com/Hotels-g424907-Al_Fayyum_Al_Fayyum_Governorate-Hotels.html',
+      'https://www.tripadvisor.com/Hotels-g294202-Giza_Giza_Governorate-Hotels.html',
+      'https://www.tripadvisor.com/Hotels-g295398-Alexandria_Alexandria_Governorate-Hotels.html#BODYCON']
 #Scrap Hotel Name
 def HotelScrapping(url): #note: change the name of the url since it shadows the parameters
         #names
@@ -62,7 +65,7 @@ def Aminities(url):
     aminities=""
     tempSoup = SoupCreation.createSoup(url)
     for am in tempSoup.findAll('div', {'data-test-target': 'amenity_text'}):
-        aminities = aminities + ',' + am.text
+        aminities = am.text + ',' + aminities
         #we seperate aminities from eachother using a comma
     return aminities
 
@@ -83,7 +86,7 @@ def Description(url):
                 return descr.text
         except:
             return ""
-file_name='HotelsHurgada2'
+file_name='HotelsAlexandria'
 count=1;
 #Write inside the CSV file
 def WriteInCsv(hotel):
@@ -101,7 +104,7 @@ def initalColumns():
 
 #Main Function
 initalColumns()
-url=urls[3]
+url=urls[6]
 while True:
     #this loop is made to go through all pages
     soup = SoupCreation.createSoup(url)
