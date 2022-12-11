@@ -45,10 +45,14 @@ def numOfReviews(url):
 def Prices(url):
     tempsoup = SoupCreation.createSoup(url)
     try:
-        for p in tempsoup.find('div', {'class': 'hhlrH w pUBNi'}):
-          return p.text.replace('Â', '').strip()
+        for p in tempsoup.find('div', {'data-sizegroup': 'hr_chevron_prices'}):
+          return p.text
     except:
-         return ""
+       try:
+           for pr in tempsoup.find('div',{'class':'JPNOn b Wi'}):
+               return pr.text
+       except:
+           return""
 
 #Scrap Hotel Aminities
 def Aminities(url):
@@ -89,6 +93,7 @@ def initalColumns():
     with open('HotelsAll.csv', mode='a', newline='', encoding='UTF-8') as Hotels:
         writer = csv.writer(Hotels, delimiter=',')
         writer.writerow(columns)
+
 
 #Main Function
 initalColumns()
