@@ -5,8 +5,11 @@ from urllib.parse import urljoin
 # Extract the HTML and create a BeautifulSoup object
 import SoupCreation
 
-url = 'https://www.tripadvisor.in/Hotels-g294201-Cairo_Cairo_Governorate-Hotels.html'
 
+urls=['https://www.tripadvisor.in/Hotels-g294201-Cairo_Cairo_Governorate-Hotels.html',
+      'https://www.tripadvisor.in/Hotels-g297555-Sharm_El_Sheikh_South_Sinai_Red_Sea_and_Sinai-Hotels.html',
+      'https://www.tripadvisor.in/Hotels-g294205-Luxor_Nile_River_Valley-Hotels.html',
+      'https://www.tripadvisor.in/Hotels-g297549-Hurghada_Red_Sea_and_Sinai-Hotels.html']
 #Scrap Hotel Name
 def HotelScrapping(url): #note: change the name of the url since it shadows the parameters
         #names
@@ -80,23 +83,25 @@ def Description(url):
                 return descr.text
         except:
             return ""
-
+file_name='HotelsHurgada2'
+count=1;
 #Write inside the CSV file
 def WriteInCsv(hotel):
-    with open('HotelsAll.csv', mode='a', newline='',encoding='UTF-8') as Hotels:
+    with open(file_name+".csv", mode='a', newline='',encoding='UTF-8') as Hotels:
         writer = csv.writer(Hotels, delimiter=',')
         writer.writerow(hotel)
 
 #Initiate Column Names for CSV
 def initalColumns():
     columns=['name','ratings','prices','aminities','location','description']
-    with open('HotelsAll.csv', mode='a', newline='', encoding='UTF-8') as Hotels:
+    with open(file_name+".csv", mode='a', newline='', encoding='UTF-8') as Hotels:
         writer = csv.writer(Hotels, delimiter=',')
         writer.writerow(columns)
 
 
 #Main Function
 initalColumns()
+url=urls[3]
 while True:
     #this loop is made to go through all pages
     soup = SoupCreation.createSoup(url)
@@ -111,13 +116,13 @@ while True:
         hotels.append(Aminities(site))
         hotels.append(Location(site))
         hotels.append(Description(site))
-        print("hi site for loop ")
         try:
             WriteInCsv(hotels)
         except:
             print(site +"---> ERROR")
     #this if condition gets the next page and changes the url to it
     next_page = soup.find('a', {'class': 'next'})
+    print(next_page.get('href'))
     if (next_page):
         next_url = next_page.get('href')
         url = urljoin(url, next_url)
