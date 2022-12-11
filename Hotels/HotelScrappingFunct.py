@@ -52,8 +52,9 @@ def Prices(url):
 
 #Scrap Hotel Aminities
 def Aminities(url):
-    aminities = ""
-    for am in soup.findAll('div', {'class': 'yplav f ME H3 _c'}):
+    aminities=""
+    tempSoup = SoupCreation.createSoup(url)
+    for am in tempSoup.findAll('div', {'data-test-target': 'amenity_text'}):
         aminities = aminities + ',' + am.text
         #we seperate aminities from eachother using a comma
     return aminities
@@ -78,14 +79,14 @@ def Description(url):
 
 #Write inside the CSV file
 def WriteInCsv(hotel):
-    with open('HotelsAll1.csv', mode='a', newline='',encoding='UTF-8') as Hotels:
+    with open('HotelsAll.csv', mode='a', newline='',encoding='UTF-8') as Hotels:
         writer = csv.writer(Hotels, delimiter=',')
         writer.writerow(hotel)
 
 #Initiate Column Names for CSV
 def initalColumns():
     columns=['name','ratings','prices','aminities','location','description']
-    with open('HotelsAll3.csv', mode='a', newline='', encoding='UTF-8') as Hotels:
+    with open('HotelsAll.csv', mode='a', newline='', encoding='UTF-8') as Hotels:
         writer = csv.writer(Hotels, delimiter=',')
         writer.writerow(columns)
 
